@@ -7,8 +7,6 @@ const Comment = $('<li>', {
         height: '50px',
         border: '2.5 solid black',
         margin: '5px 0px'
-
-         
     }
 })
 

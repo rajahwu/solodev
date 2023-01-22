@@ -10,6 +10,18 @@ const PicContainer = $('<div>', {
     }
 })
 
-$('<img>').appendTo(PicContainer);
+$('<img>', {
+    id: 'catImage',
+    width: '250px',
+    height: '250px',
+    css: { borderRadius: '15px' },
+    click: function () {
+        $.get('https://api.thecatapi.com/v1/images/search', (response) => {
+            $('#catImage').attr({
+                src: response[0].url,
+            });
+        })
+    }
+}).appendTo(PicContainer);
 
 export default PicContainer;

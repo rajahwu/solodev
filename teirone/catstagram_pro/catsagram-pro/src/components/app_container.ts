@@ -10,7 +10,8 @@ const AppContainer = $('<div>', {
         borderRadius: '15px',
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: ' hsl(0, 0%, 5%)'
     }
 })
 
