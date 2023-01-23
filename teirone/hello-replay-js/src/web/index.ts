@@ -1,13 +1,37 @@
-
 import { makeSprite, GameProps } from '@replay/core';
-import { Bird } from '../bird';
+import { Level } from '../level';
+import { Menu } from '../menu';
 
-export const Game = makeSprite<GameProps>({
-  render() {
+type GameState = {
+  view: "menu" | "level"
+}
+
+export const Game = makeSprite<GameProps, GameState>({
+  init() {
+    return { view: "menu" };
+  },
+  render({ state, updateState }) {
+    const inMenuScreen = state.view === "menu";
+
     return [
-      Bird({
-        id: "bird",
+      Level({
+        id: "level",
+        paused: inMenuScreen,
       }),
+      inMenuScreen 
+      ? Menu({
+        id: "menu",
+        start: () => {
+          updateState((prevState) => {
+            return {
+              ...prevState,
+              view: "level",
+            };
+          }) ;
+            
+        },
+      })
+      : null
     ];
   },
 });
